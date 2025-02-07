@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-const mongoURI = 'mongodb://127.0.0.1:27017/donordb';
+const mongoURI = 'mongodb+srv://sumitmali2002:Skms121524@cluster0.fd7sc.mongodb.net/donordb?retryWrites=true&w=majority&appName=Cluster0';
 mongoose
 	.connect(mongoURI)
 	.then(() => console.log('MongoDB connected'))
