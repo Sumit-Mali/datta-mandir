@@ -68,7 +68,6 @@ const DonorPage = () => {
 									{donor.name}
 								</h4>
 								<p className="text-gray-600">{donor.village}</p>
-								<p className="text-gray-600">{donor.phone}</p>
 								<h4 className="text-md text-gray-800 font-semibold">
 									₹ {donor.amount}
 								</h4>
