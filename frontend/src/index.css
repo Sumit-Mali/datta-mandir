@@ -1,7 +1,7 @@
-@import 'tailwindcss';
-
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Tiro+Devanagari+Marathi:ital@0;1&display=swap');
+
+@import 'tailwindcss';
 
 body {
 	background-color: #eae0c8;
