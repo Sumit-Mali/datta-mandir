@@ -12,7 +12,7 @@ const DonorPage = () => {
 		const fetchDonors = async () => {
 			try {
 				const response = await axios.get(
-					`https://datta-mandir-backend-ohua.onrender.com?page=${
+					`https://datta-mandir-backend-ohua.onrender.com/getDonors?page=${
 						searchTerm ? 1 : page
 					}&limit=12&search=${searchTerm}`
 				);
