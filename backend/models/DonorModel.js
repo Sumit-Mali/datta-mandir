@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const DonorSchema = new mongoose.Schema({
 	name: String,
 	village: String,
-	phone: String,
 	amount: String,
 	photo_url: String,
 });
