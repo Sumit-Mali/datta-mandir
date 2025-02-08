@@ -22,24 +22,42 @@ mongoose
 
 // Route for donors and also pagination
 app.get('/getDonors', async (req, res) => {
-	const { page = 1, limit = 12, search = '' } = req.query;
+	const { page = 1, limit = 10, search = '' } = req.query;
+	const pageNumber = parseInt(page, 10);
+	const limitNumber = parseInt(limit, 10);
 
 	try {
 		const query = search
 			? { name: { $regex: search, $options: 'i' } } // Case-insensitive search
 			: {};
 
-		// If searching, return all results (ignore pagination)
-		if (search) {
-			const donors = await DonorModel.find(query); // Get all matching donors
-			return res.json({ donors, totalCount: donors.length });
-		}
+		// Count documents only when pagination is used
+		const totalCountPromise = DonorModel.countDocuments(query);
 
-		// Otherwise, apply pagination
-		const totalCount = await DonorModel.countDocuments(query);
-		const donors = await DonorModel.find(query)
-			.skip((page - 1) * limit)
-			.limit(parseInt(limit));
+		// If searching, return all results (ignore pagination)
+		// if (search) {
+		// 	const donors = await DonorModel.find(query); // Get all matching donors
+		// 	return res.json({ donors, totalCount: donors.length });
+		// }
+
+		// Optimize query using .lean() for faster performance
+		const donorsPromise = DonorModel.find(query)
+			.skip((pageNumber - 1) * limitNumber)
+			.limit(limitNumber)
+			.select('name amount village photo_url') // Fetch only required fields
+			.lean(); // Convert Mongoose documents to plain JavaScript objects
+		
+		// // Otherwise, apply pagination
+		// const totalCount = await DonorModel.countDocuments(query);
+		// const donors = await DonorModel.find(query)
+		// 	.skip((page - 1) * limit)
+		// 	.limit(parseInt(limit));
+
+		// Run both queries in parallel to reduce response time
+		const [totalCount, donors] = await Promise.all([
+			totalCountPromise,
+			donorsPromise,
+		]);
 
 		res.json({ donors, totalCount });
 	} catch (error) {
