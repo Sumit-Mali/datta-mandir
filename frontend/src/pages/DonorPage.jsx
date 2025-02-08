@@ -14,10 +14,10 @@ const DonorPage = () => {
 				const response = await axios.get(
 					`https://datta-mandir-backend-ohua.onrender.com/getDonors?page=${
 						searchTerm ? 1 : page
-					}&limit=12&search=${searchTerm}`
+					}&limit=10&search=${searchTerm}`
 				);
 				setDonors(response.data.donors);
-				setTotalPages(Math.ceil(response.data.totalCount / 12));
+				setTotalPages(Math.ceil(response.data.totalCount / 10));
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}
@@ -50,12 +50,12 @@ const DonorPage = () => {
 			</div>
 
 			{/* Donor Cards */}
-			<div className="grid grid-cols-2 md:grid-cols-4 place-items-center gap-2 md:gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-4 place-items-center gap-2 md:gap-4">
 				{filteredDonors.length > 0 ? (
 					filteredDonors.map((donor) => (
 						<div
 							key={donor._id}
-							className="w-40 sm:w-80 border rounded-lg p-2 shadow-lg bg-[#F4EEDC]">
+							className="w-80 border rounded-lg p-2 shadow-lg bg-[#F4EEDC]">
 							<div className="w-full h-40 flex items-center justify-center bg-gray-200">
 								<img
 									src={donor.photo_url}
