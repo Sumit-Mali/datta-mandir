@@ -14,7 +14,7 @@ const DonorPage = () => {
 				const response = await axios.get(
 					`https://datta-mandir-backend-ohua.onrender.com/getDonors?page=${
 						searchTerm ? 1 : page
-					}&limit=10&search=${searchTerm}`
+					}&limit=10&search=${searchTerm}?t=${Date.now()}`
 				);
 				setDonors(response.data.donors);
 				setTotalPages(Math.ceil(response.data.totalCount / 10));
