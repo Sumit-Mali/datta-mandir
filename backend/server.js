@@ -7,14 +7,12 @@ const app = express();
 
 // Middleware
 app.use(cors({
-	origin:"datta-mandir-frontend.vercel.app",
-	methods: "GET,POST",
-	credentials:true
+	     // -> render app
+    origin: "https://datta-mandir-frontend.onrender.com", // Replace with your frontend URL
+    methods: "GET,POST",
+    credentials: true
 }));
-     // -> render app
-    // origin: "https://datta-mandir-frontend.onrender.com", // Replace with your frontend URL
-    // methods: "GET,POST",
-    // credentials: true
+
 app.use(express.json());
 
 // MongoDB Connection
