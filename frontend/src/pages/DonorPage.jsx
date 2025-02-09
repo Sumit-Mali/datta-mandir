@@ -15,7 +15,7 @@ const DonorPage = () => {
 		const fetchDonors = async () => {
 			try {
 				const response = await axios.get(
-					`datta-mandir-backend.vercel.app/getDonors?page=${
+					` https://datta-mandir-backend-ohua.onrender.com/getDonors?page=${
 						searchTerm ? 1 : page
 					}&limit=10&search=${searchTerm}&t=${Date.now()}`
 				);
