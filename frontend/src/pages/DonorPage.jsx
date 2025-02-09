@@ -8,11 +8,14 @@ const DonorPage = () => {
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
 
+	// render backend url
+	// https://datta-mandir-backend-ohua.onrender.com
+
 	useEffect(() => {
 		const fetchDonors = async () => {
 			try {
 				const response = await axios.get(
-					`https://datta-mandir-backend-ohua.onrender.com/getDonors?page=${
+					`datta-mandir-backend.vercel.app/getDonors?page=${
 						searchTerm ? 1 : page
 					}&limit=10&search=${searchTerm}&t=${Date.now()}`
 				);
