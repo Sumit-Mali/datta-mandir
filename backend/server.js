@@ -6,11 +6,11 @@ const DonorModel = require('./models/DonorModel');
 const app = express();
 
 // Middleware
-app.use(cors({
-    origin: "https://datta-mandir-frontend.onrender.com", // Replace with your frontend URL
-    methods: "GET,POST",
-    credentials: true
-}));
+app.use(cors());
+     // -> render app
+    // origin: "https://datta-mandir-frontend.onrender.com", // Replace with your frontend URL
+    // methods: "GET,POST",
+    // credentials: true
 app.use(express.json());
 
 // MongoDB Connection
