@@ -64,31 +64,37 @@ const DonorPage = () => {
 				/>
 			</div>
 
-			{/* Donor Cards */}
+{/* Donor Cards */}
 			<div className="grid grid-cols-1 md:grid-cols-4 place-items-center gap-2 md:gap-4">
-				{filteredDonors.length > 0 ? (
-					filteredDonors.map((donor) => (
-						<div
-							key={donor._id}
-							className="w-80 border rounded-lg p-2 shadow-lg bg-[#F4EEDC]">
-							<div className="w-full h-40 flex items-center justify-center bg-gray-200">
-								<img
-									src={donor.photo_url}
-									alt={donor.name}
-									className="max-w-full max-h-full object-contain"
-								/>
+				{donors.length > 0 ? (
+					donors.map(
+						(
+							donor // ✅ Use `donors` directly
+						) => (
+							<div
+								key={donor._id}
+								className="w-80 border rounded-lg p-2 shadow-lg bg-[#F4EEDC]">
+								<div className="w-full h-40 flex items-center justify-center bg-gray-100">
+									<img
+										src={donor.photo_url}
+										alt={donor.name}
+										className="max-w-full max-h-full object-contain"
+									/>
+								</div>
+								<div className="p-2">
+									<h4 className="text-md font-bold">
+										{donor.name}
+									</h4>
+									<p className="text-gray-600">
+										{donor.village}
+									</p>
+									<h4 className="text-md text-gray-800 font-semibold">
+										₹ {donor.amount}
+									</h4>
+								</div>
 							</div>
-							<div className="p-2">
-								<h4 className="text-md font-bold">
-									{donor.name}
-								</h4>
-								<p className="text-gray-600">{donor.village}</p>
-								<h4 className="text-md text-gray-800 font-semibold">
-									₹ {donor.amount}
-								</h4>
-							</div>
-						</div>
-					))
+						)
+					)
 				) : (
 					<p className="col-span-4 text-gray-600">
 						देणगीदाराचे नाव अस्तित्वात नाही{' '}
